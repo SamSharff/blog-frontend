@@ -5,6 +5,7 @@ import SignUp from "../views/SignUp.vue";
 import LogIn from "../views/LogIn.vue";
 import LogOut from "../views/LogOut.vue";
 import PostsIndex from "../views/PostsIndex.vue";
+import PostsNew from "../views/PostsNew.vue";
 import PostsShow from "../views/PostsShow.vue";
 
 const routes = [
@@ -46,6 +47,11 @@ const routes = [
     path: "/posts",
     name: "postsIndex",
     component: PostsIndex,
+  },
+  {
+    path: "/posts/new",
+    name: "postsNew",
+    component: PostsNew,
   },
   {
     path: "/posts/:id",

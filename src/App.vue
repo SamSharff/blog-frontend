@@ -13,6 +13,8 @@
     <router-link to="/logout">Log Out</router-link>
     |
     <router-link to="/posts">All posts</router-link>
+    |
+    <router-link to="/posts/new">New</router-link>
   </nav>
   <router-view />
 </template>
