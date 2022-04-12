@@ -8,7 +8,7 @@ export default {
     };
   },
   created: function () {
-    axios.get("http://localhost:3000/posts/1.json").then((response) => {
+    axios.get("http://localhost:3000/posts/" + this.$route.params.id + ".json").then((response) => {
       console.log(response.data);
       this.post = response.data;
     });
@@ -18,8 +18,9 @@ export default {
 
 <template>
   <div>
-    <h2>Post</h2>
+    <h2>Post Show</h2>
+    <h3>Title: {{ post.title }}</h3>
     <p>{{ post }}</p>
+    <a v-bind:href="`/posts`">Go back</a>
   </div>
-  <template />
 </template>

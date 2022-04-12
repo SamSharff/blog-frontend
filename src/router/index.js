@@ -44,12 +44,12 @@ const routes = [
   },
   {
     path: "/posts",
-    name: "posts",
+    name: "postsIndex",
     component: PostsIndex,
   },
   {
-    path: "/posts/1",
-    name: "posts",
+    path: "/posts/:id",
+    name: "postsShow",
     component: PostsShow,
   },
 ];
