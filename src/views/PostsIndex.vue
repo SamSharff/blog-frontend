@@ -19,10 +19,19 @@ export default {
 
 <template>
   <div v-for="post in posts" v-bind:key="post.id">
-    <h2>Title: {{ post.title }}</h2>
-    <img :src="post.image" v-bind:alt="post.title" />
-    <p>Body: {{ post.body }}</p>
-    <a v-bind:href="`/posts/${post.id}`">More info</a>
+    <div v-bind:class="{ selected: post === currentPost }">
+      <h2>Title: {{ post.title }}</h2>
+      <img :src="post.image" v-bind:alt="post.title" />
+      <p>Body: {{ post.body }}</p>
+      <a v-bind:href="`/posts/${post.id}`">More info</a>
+    </div>
   </div>
-  <template />
 </template>
+
+<style>
+.selected {
+  color: aliceblue;
+  background-color: black;
+  transition: background-color 2s ease;
+}
+</style>
