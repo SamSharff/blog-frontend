@@ -84,6 +84,36 @@ export default {
         return lowerTitle.includes(lowerTitleFilter);
       });
     },
+    sortedArray() {
+      let sortedPosts = this.posts;
+      sortedPosts = sortedPosts.sort((a, b) => {
+        let fa = a.title.toLowerCase(),
+          fb = b.title.toLowerCase();
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+      return sortedPosts;
+    },
+    sortedCreatedAt() {
+      let sortedPosts = this.posts;
+      sortedPosts = sortedPosts.sort((a, b) => {
+        let fa = a.created_at.toLowerCase(),
+          fb = b.created_at.toLowerCase();
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+      return sortedPosts;
+    },
   },
 };
 </script>
@@ -91,6 +121,12 @@ export default {
 <template>
   <div class="home">
     <div>
+      <input v-model="titleFilter" type="text" list="titles" />
+      <datalist id="title">
+        <option v-for="post in posts" v-bind:key="post.id">{{ post.title }}</option>
+      </datalist>
+      <button v-on:click="sortedArray()">Sort by Title</button>
+      <button v-on:click="sortedCreatedAt()">Sort by 'Created At' Time</button>
       <h1>New Post</h1>
       Title:
       <input type="text" v-model="newPostTitle" />
@@ -101,28 +137,29 @@ export default {
       <button v-on:click="createPost()">Create</button>
       <!-- character count validation - Body -->
       <small>{{ 500 - newPostBody.body.length }} characters remaining</small>
-    </div>
-    <h1>All posts</h1>
-    <div v-for="post in posts" v-bind:key="post.id">
-      <h2>
-        <p>Title:{{ post.title }}</p>
-        <p>Created: {{ relativeDate(post.created_at) }}</p>
 
-        <button v-on:click="showPost(post)">more info</button>
-      </h2>
-      <div v-if="post === currentPost">
-        <img v-bind:src="post.image" alt="" />
-        <p>{{ post.body }}</p>
-        <div>
-          <h4>Edit post</h4>
-          Title:
-          <input type="text" v-model="post.title" />
-          Image:
-          <input type="text" v-model="post.image" />
-          Body:
-          <input type="text" v-model="post.body" />
-          <button v-on:click="updatePost(post)">Update</button>
-          <button v-on:click="destroyPost(post)">Destroy</button>
+      <h1>All posts</h1>
+      <div v-for="post in filterPosts()" v-bind:key="post.id">
+        <h2>
+          <p>Title:{{ post.title }}</p>
+          <p>Created: {{ relativeDate(post.created_at) }}</p>
+
+          <button v-on:click="showPost(post)">more info</button>
+        </h2>
+        <div v-if="post === currentPost">
+          <img v-bind:src="post.image" alt="" />
+          <p>{{ post.body }}</p>
+          <div>
+            <h4>Edit post</h4>
+            Title:
+            <input type="text" v-model="post.title" />
+            Image:
+            <input type="text" v-model="post.image" />
+            Body:
+            <input type="text" v-model="post.body" />
+            <button v-on:click="updatePost(post)">Update</button>
+            <button v-on:click="destroyPost(post)">Destroy</button>
+          </div>
         </div>
       </div>
     </div>
