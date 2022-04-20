@@ -120,6 +120,7 @@ export default {
 
 <template>
   <div class="home">
+    <!-- Adds filter and sort -->
     <div>
       <input v-model="titleFilter" type="text" list="titles" />
       <datalist id="title">
@@ -127,6 +128,7 @@ export default {
       </datalist>
       <button v-on:click="sortedArray()">Sort by Title</button>
       <button v-on:click="sortedCreatedAt()">Sort by 'Created At' Time</button>
+      <!-- Create/New post -->
       <h1>New Post</h1>
       Title:
       <input type="text" v-model="newPostTitle" />
@@ -135,6 +137,7 @@ export default {
       Body:
       <input type="text" v-model="newPostBody" />
       <button v-on:click="createPost()">Create</button>
+
       <!-- character count validation - Body -->
       <small>{{ 500 - newPostBody.body.length }} characters remaining</small>
 
