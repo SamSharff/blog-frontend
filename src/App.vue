@@ -87,12 +87,20 @@ export default {
       </div>
     </div>
   </nav>
-  <router-view />
+  <div class="container"><router-view /></div>
 </template>
 
 <style>
 /* #app  */
-body h1 {
+/* body {
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background: radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent),
+    radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent) 25px 25px,
+    linear-gradient(#444cf7 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #444cf7 2px, #e5e5f7 2px) -1px 0;
+  background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+} */
+/* body h1 {
   font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;
   font-size: 24px;
   font-style: normal;
@@ -100,6 +108,7 @@ body h1 {
   font-weight: 700;
   line-height: 26.4px;
 }
+
 h3 {
   font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;
   font-size: 14px;
@@ -131,5 +140,5 @@ pre {
   font-variant: normal;
   font-weight: 400;
   line-height: 18.5714px;
-}
+} */
 </style>
