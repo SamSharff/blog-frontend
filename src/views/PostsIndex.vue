@@ -6,6 +6,7 @@ export default {
   data: function () {
     return {
       posts: [],
+      titleFilter: "LOYALTY",
     };
   },
   created: function () {
@@ -20,7 +21,9 @@ export default {
     },
     filterPosts: function () {
       return this.posts.filter((post) => {
-        return post.title.includes("loyalty");
+        var lowerTitle = post.title.toLowerCase();
+        var lowerTitleFilter = this.titleFilter.toLowerCase();
+        return lowerTitle.includes(lowerTitleFilter);
       });
     },
   },
@@ -28,6 +31,9 @@ export default {
 </script>
 
 <template>
+  <h1>All posts</h1>
+  Search:
+  <input v-model="titleFilter" type="text" />
   <div v-for="post in filterPosts()" v-bind:key="post.id">
     <div v-bind:class="{ selected: post === currentPost }">
       <h2>Title: {{ post.title }}</h2>
