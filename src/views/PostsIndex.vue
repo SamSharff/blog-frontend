@@ -6,7 +6,7 @@ export default {
   data: function () {
     return {
       posts: [],
-      titleFilter: "LOYALTY",
+      titleFilter: "",
     };
   },
   created: function () {
@@ -33,7 +33,10 @@ export default {
 <template>
   <h1>All posts</h1>
   Search:
-  <input v-model="titleFilter" type="text" />
+  <input v-model="titleFilter" list="titles" type="text" />
+  <datalist id="titles">
+    <option v-for="post in posts" v-bind:key="post.id">{{ post.title }}</option>
+  </datalist>
   <div v-for="post in filterPosts()" v-bind:key="post.id">
     <div v-bind:class="{ selected: post === currentPost }">
       <h2>Title: {{ post.title }}</h2>
