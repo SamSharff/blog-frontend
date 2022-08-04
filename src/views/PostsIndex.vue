@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data: function () {
@@ -13,7 +14,11 @@ export default {
       console.log("All posts", this.posts);
     });
   },
-  methods: {},
+  methods: {
+    relativeDate: function (date) {
+      return moment(date).fromNow();
+    },
+  },
 };
 </script>
 
@@ -23,6 +28,7 @@ export default {
       <h2>Title: {{ post.title }}</h2>
       <img :src="post.image" v-bind:alt="post.title" />
       <p>Body: {{ post.body }}</p>
+      <p>Created: {{ relativeDate(post.created_at) }}</p>
       <a v-bind:href="`/posts/${post.id}`">More info</a>
     </div>
   </div>
