@@ -18,12 +18,17 @@ export default {
     relativeDate: function (date) {
       return moment(date).fromNow();
     },
+    filterPosts: function () {
+      return this.posts.filter((post) => {
+        return post.title.includes("loyalty");
+      });
+    },
   },
 };
 </script>
 
 <template>
-  <div v-for="post in posts" v-bind:key="post.id">
+  <div v-for="post in filterPosts()" v-bind:key="post.id">
     <div v-bind:class="{ selected: post === currentPost }">
       <h2>Title: {{ post.title }}</h2>
       <img :src="post.image" v-bind:alt="post.title" />
